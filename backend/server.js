@@ -1,5 +1,3 @@
-// backend/server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -19,7 +17,6 @@ const ProductSchema = new mongoose.Schema({
   price: Number, // Novo campo para preço
   category: String, // Novo campo para categoria
 });
-
 
 const Product = mongoose.model('Product', ProductSchema);
 
