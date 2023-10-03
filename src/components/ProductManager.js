@@ -7,10 +7,8 @@ const ProductManagement = () => {
   const [newPrice, setNewPrice] = useState('');
   const [newCategory, setNewCategory] = useState('');
 
-  const apiUrl = process.env.REACT_APP_API_URL; // Use a variável de ambiente definida na Vercel
-
   useEffect(() => {
-    axios.get(`${apiUrl}/api/products`)
+    axios.get('http://localhost:5000/api/products')
       .then((response) => {
         setProducts(response.data);
       })
@@ -20,9 +18,9 @@ const ProductManagement = () => {
   }, []);
 
   const handleAddProduct = () => {
-    axios.post(`${apiUrl}/api/products`, {
+    axios.post('http://localhost:5000/api/products', {
       name: newProduct,
-      price: parseFloat(newPrice.replace(',', '.')),
+      price: parseFloat(newPrice.replace(',', '.')), // Formate o preço para um número com ponto decimal
       category: newCategory,
     })
       .then((response) => {
@@ -37,7 +35,7 @@ const ProductManagement = () => {
   };
 
   const handleRemoveProduct = (productId) => {
-    axios.delete(`${apiUrl}/api/products/${productId}`)
+    axios.delete(`http://localhost:5000/api/products/${productId}`)
       .then(() => {
         setProducts(products.filter((product) => product._id !== productId));
       })
